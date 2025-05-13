@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia e a SAUDE - Ciência da Computação</title>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Boldonse&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --amarelo: #FFA62B;
+            --verde1:  #1C7C54;
+            --verde2:  #1B512D;
+            --preto:   #1A1423;
+        }
+        *{
+            margin:0px;
+            padding:0px;
+        }
+
+        .bebas-neue-regular {
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--amarelo);
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .logo, .imagem-direita {
+            width: 200px; 
+            height: auto;
+			
+        }
+
+        nav {
+            display: flex;
+            gap: 20px; 
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-family: "Bebas Neue", sans-serif;
+            font-size:200%;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .sessao1 {
+            display:flex;
+            height:40vh;
+            align-items:center;
+            justify-content:space-around;
+            background: #1F00AF;
+background: linear-gradient(90deg, rgba(31, 0, 175, 1) 0%, rgba(0, 0, 50, 1) 100%);
+        }
+		 .sessao2 {
+            display:flex;
+            height:40vh;
+            align-items:center;
+            justify-content:space-around;
+            background: #3E3E3E;
+background: linear-gradient(90deg, rgba(62, 62, 62, 1) 0%, rgba(155, 155, 155, 1) 100%);
+        }
+		 .sessao3 {
+            display:flex;
+            height:40vh;
+            align-items:center;
+            justify-content:space-around;
+            background: #EEC534;
+background: linear-gradient(90deg, rgba(238, 197, 52, 1) 0%, rgba(238, 137, 43, 1) 100%);
+        }
+		 .sessao4 {
+            display:flex;
+            height:40vh;
+            align-items:center;
+            justify-content:space-around;
+            background: #5FEE34;
+background: linear-gradient(90deg, rgba(95, 238, 52, 1) 0%, rgba(36, 163, 121, 1) 100%);
+        }
+
+        .textoLateral {
+            width:50%;
+			color:white;
+        }
+
+        .card {
+            width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img-container {
+            position: relative;  /* Isso permite que o box-shadow seja aplicado corretamente */
+            overflow: hidden;   /* Garante que a sombra não saia dos limites da imagem */
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra interna */
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+		
+		@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo, .imagem-direita {
+        width: 150px;
+        margin: 10px 0;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sessao1,
+    .sessao2,
+    .sessao3,
+    .sessao4 {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .textoLateral,
+    .card {
+        width: 90%;
+    }
+
+    .textoLateral {
+        text-align: center;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+    }
+
+    .btn {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    height: 90%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content iframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+
+    </style>
+</head>
+<div id="pdfModal" style="display:none;" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+  </div>
+</div>
+<body>
+
+    <header>
+        <img src="imgs/logo grupo.png" alt="Logo Esquerda" class="logo"> 
+        
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="fontes.html">fontes de pesquisa</a>
+        </nav>
+        
+        <img src="imgs/logo CS.png" alt="Imagem Direita" class="imagem-direita"> 
+    </header>
+    
+    <div class="sessao1">
+        <div class="card">
+            <div class="img-container">
+                <img src="imgs/pdf1.png" alt="Imagem do Card">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Como o uso de aparelhos eletrônicos afeta o sono</h2>
+                <br>
+                <a href="pdfs/pdf1.pdf" class="btn">Veja o PDF</a>
+            </div>
+        </div>
+
+        <div class="textoLateral">
+            <h3>Como o uso de aparelhos eletrônicos afeta o sono</h3>
+            <hr>
+            <br>
+            <p>
+                O uso excessivo de celulares, tablets e computadores antes de dormir pode prejudicar a qualidade do sono. A luz azul emitida por essas telas interfere na produção de melatonina, o hormônio do sono, dificultando o adormecer e reduzindo o tempo de sono profundo. Além disso, o uso contínuo desses aparelhos pode criar um padrão de dependência que atrapalha o descanso adequado.
+            </p>
+        </div>
+    </div>
+	
+	  <div class="sessao2">
+        
+
+        <div class="textoLateral">
+            <h3>Tecnologia e Saúde Mental Como seu Celular te afeta</h3>
+            <hr>
+            <br>
+            <p>
+                Nos últimos anos, a tecnologia passou a fazer parte de praticamente todos os aspectos da vida. Estamos sempre conectados, seja para trabalhar, estudar, nos comunicar ou nos entreter. Embora traga muitas facilidades, esse uso constante também pode afetar negativamente a saúde mental, muitas vezes de forma silenciosa.
+            </p>
+        </div>
+		<div class="card">
+            <div class="img-container">
+                <img src="imgs/pdf2.png" alt="Imagem do Card">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Tecnologia e Saúde Mental Como seu Celular te afeta</h2>
+                <br>
+                <a href="pdfs/pdf2.pdf" class="btn">Veja o PDF</a>
+            </div>
+        </div>
+    </div>
+	
+	  <div class="sessao3">
+        <div class="card">
+            <div class="img-container">
+                <img src="imgs/pdf3.png" alt="Imagem do Card">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Dependência digital </h2>
+                <br>
+                <a href="pdfs/pdf3.pdf" class="btn">Veja o PDF</a>
+            </div>
+        </div>
+
+        <div class="textoLateral">
+            <h3>Dependência digital </h3>
+            <hr>
+            <br>
+            <p>
+ A tecnologia está presente em praticamente tudo o que fazemos. Mas quando o uso de dispositivos digitais passa a interferir nas atividades do dia a dia, nos relacionamentos e na saúde mental, é hora de ligar o alerta. A dependência digital é um fenômeno real e pode trazer consequências sérias se não for reconhecida e enfrentada a tempo.
+            </p>
+        </div>
+    </div>
+	
+	  <div class="sessao4">
+      
+
+        <div class="textoLateral">
+            <h3>Como a impressão 3D está salvando vidas na medicina</h3>
+            <hr>
+            <br>
+            <p>
+A impressão 3D deixou de ser uma curiosidade tecnológica para se tornar uma ferramenta valiosa na área da saúde. Com ela, médicos e pesquisadores conseguem criar réplicas exatas de órgãos, tecidos, próteses e instrumentos cirúrgicos. Essa tecnologia está transformando tratamentos, tornando-os mais personalizados, acessíveis e eficazes.  </p>
+        </div>
+		
+		  <div class="card">
+            <div class="img-container">
+                <img src="imgs/pdf4.png" alt="Imagem do Card">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Como a impressão 3D está salvando vidas na medicina</h2>
+                <br>
+                <a href="pdfs/pdf4.pdf" class="btn">Veja o PDF</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+  const modal = document.getElementById("pdfModal");
+  const pdfFrame = document.getElementById("pdfFrame");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      const pdfURL = this.getAttribute("href");
+      pdfFrame.src = pdfURL;
+      modal.style.display = "flex";
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    pdfFrame.src = ""; 
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      pdfFrame.src = "";
+    }
+  });
+</script>
+</html>
